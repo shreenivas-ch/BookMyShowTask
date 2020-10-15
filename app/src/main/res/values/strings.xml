@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewProjectTemplate</string>
+    <string name="app_name">QuizApp</string>
     <string name="message">Message</string>
     <string name="ok">Ok</string>
     <string name="no">No</string>
