@@ -29,6 +29,22 @@ android {
         targetCompatibility = 1.8
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        live {
+            versionCode 1
+            versionName "1.0"
+            buildConfigField 'String', 'BASE_URL', '"http://www.saturdayworking.in/"'
+            buildConfigField 'String', 'APIS', '"Live"'
+        }
+        beta {
+            versionCode 1
+            versionName "1.0"
+            buildConfigField 'String', 'BASE_URL', '"http://www.saturdayworking.in/"'
+            buildConfigField 'String', 'APIS', '"Staging"'
+        }
+    }
+
     android.applicationVariants.all { variant ->
 
         variant.outputs.all {
@@ -66,7 +82,7 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.29.1'
     kapt 'com.google.dagger:dagger-compiler:2.29.1'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
