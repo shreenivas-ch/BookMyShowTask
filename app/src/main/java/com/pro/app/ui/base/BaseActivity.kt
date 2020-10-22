@@ -21,7 +21,7 @@ import com.pro.app.BuildConfig
 import com.pro.app.R
 import com.pro.app.data.events.AuthFailEvent
 import com.pro.app.data.network.AppInteractor
-import com.pro.app.ui.view.activities.SplashscreenActivity
+import com.pro.app.ui.views.activities.SplashscreenActivity
 import com.pro.app.utils.NotificationHandler
 import kotlinx.android.synthetic.main.layout_progressbar.*
 

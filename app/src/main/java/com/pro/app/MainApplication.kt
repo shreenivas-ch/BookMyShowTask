@@ -7,6 +7,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import android.provider.Settings.Secure.ANDROID_ID
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import com.appizona.yehiahd.fastsave.FastSave
 
 /**
@@ -14,7 +16,12 @@ import com.appizona.yehiahd.fastsave.FastSave
  */
 
 
-class MainApplication : Application() {
+class MainApplication : MultiDexApplication() {
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
     val deviceID: String
         get() = Settings.Secure.getString(contentResolver, ANDROID_ID)
