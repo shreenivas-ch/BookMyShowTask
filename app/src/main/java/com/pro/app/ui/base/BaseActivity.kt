@@ -22,7 +22,6 @@ import com.pro.app.R
 import com.pro.app.data.events.AuthFailEvent
 import com.pro.app.data.network.AppInteractor
 import com.pro.app.ui.views.activities.SplashscreenActivity
-import com.pro.app.utils.NotificationHandler
 import kotlinx.android.synthetic.main.layout_progressbar.*
 
 abstract class BaseActivity : AppCompatActivity(),
@@ -107,16 +106,9 @@ abstract class BaseActivity : AppCompatActivity(),
 
     override fun onResume() {
         super.onResume()
-        if (BuildConfig.DEBUG) {
-            NotificationHandler().generateNotificationForLogs(this@BaseActivity)
-        }
     }
 
     override fun onPause() {
         super.onPause()
-        if (BuildConfig.DEBUG) {
-            val nMgr = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nMgr.cancel(-1)
-        }
     }
 }

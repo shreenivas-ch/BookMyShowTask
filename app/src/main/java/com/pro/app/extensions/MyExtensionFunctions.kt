@@ -12,7 +12,6 @@ import com.pro.app.utils.Constants.TAG
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

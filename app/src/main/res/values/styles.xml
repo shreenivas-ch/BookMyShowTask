@@ -6,9 +6,4 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <style name="ColdStart" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash_coldstart</item>
-    </style>
-
 </resources>

@@ -6,7 +6,6 @@ import android.net.ConnectivityManager.NetworkCallback
 import android.net.Network
 import android.net.NetworkRequest
 import android.os.Build
-import com.appizona.yehiahd.fastsave.FastSave
 import com.mindorks.nybus.NYBus
 import com.pro.app.BuildConfig
 import com.pro.app.MainApplication.Companion.instance
@@ -41,14 +40,10 @@ abstract class NetworkConnectionInterceptor : Interceptor {
         }
         val original = chain.request()
         val android_id = instance.deviceID
-        var token =
-            FastSave.getInstance().getString(Constants.SP_USER_TOKEN, "")
-        token = token ?: ""
+
         val request = original.newBuilder()
-            .header("token", token)
             .header("os", "android")
             .header("duid", android_id)
-            .header("version", "1")
             .header("app_version", BuildConfig.VERSION_NAME)
             .header("app_version_code", BuildConfig.VERSION_CODE.toString())
             .method(original.method(), original.body())

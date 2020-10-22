@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.pro.app.data.Resource
 import com.pro.app.data.requests.LoginRequest
 import com.pro.app.data.responses.LoginResponse
-import com.pro.app.utils.AppUtilsKotlin
 import retrofit2.Response
 
 open class AppInteractor {
@@ -15,14 +14,6 @@ open class AppInteractor {
         loginRequest: LoginRequest,
         loginViewModel: MutableLiveData<Resource<LoginResponse>>
     ) {
-
-        if (!AppUtilsKotlin.checkEmailForValidity(loginRequest.email)) {
-            loginViewModel.postValue(Resource.error("Please enter valid email address", null))
-            return
-        } else if (AppUtilsKotlin.passwordValidation(loginRequest.password)) {
-            loginViewModel.postValue(Resource.error("Please enter password", null))
-            return
-        }
 
         val call = apiService.login(loginRequest)
         call.enqueue(object : SuccessCallback<LoginResponse>() {

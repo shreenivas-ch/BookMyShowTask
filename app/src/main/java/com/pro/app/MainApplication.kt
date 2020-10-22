@@ -1,6 +1,5 @@
 package com.pro.app
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -10,11 +9,6 @@ import android.provider.Settings.Secure.ANDROID_ID
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.appizona.yehiahd.fastsave.FastSave
-
-/**
- * Created by codename07 on 08/05/18.
- */
-
 
 class MainApplication : MultiDexApplication() {
 
@@ -30,7 +24,6 @@ class MainApplication : MultiDexApplication() {
         super.onCreate()
 
         instance = this
-        FastSave.init(applicationContext)
     }
 
     companion object {

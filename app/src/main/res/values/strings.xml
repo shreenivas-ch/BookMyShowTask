@@ -1,11 +1,8 @@
 <resources>
-    <string name="app_name">QuizApp</string>
+    <string name="app_name">BookMyShowTask</string>
     <string name="message">Message</string>
     <string name="ok">Ok</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="server_error_message">Something went wrong!</string>
-    <string name="notification_channel_id_default">1000</string>
-    <string name="notification_channel_name_default">General</string>
-    <string name="notification_channel_description_default">General push notifications</string>
 </resources>
