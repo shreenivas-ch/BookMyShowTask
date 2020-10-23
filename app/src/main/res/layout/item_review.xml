@@ -7,33 +7,32 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_3sdp"
     android:background="@drawable/bg_rounded_rectangle"
-    android:padding="@dimen/_5sdp"
+    android:padding="@dimen/_7sdp"
     tools:ignore="MissingPrefix">
 
     <TextView
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
         android:fontFamily="@font/nunito_semibold"
         android:gravity="center_vertical"
         android:lines="1"
         android:text="Author Name"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
 
     <TextView
-
+        android:maxLines="3"
+        android:maxLength="100"
         android:id="@+id/txtReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtName"
-        android:ellipsize="end"
         android:fontFamily="@font/nunito_regular"
         android:gravity="left|top"
-        android:lines="3"
+        android:ellipsize="end"
         android:text="This is test review for this movie"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
 
 </RelativeLayout>

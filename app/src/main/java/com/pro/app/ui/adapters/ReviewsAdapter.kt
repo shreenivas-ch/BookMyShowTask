@@ -29,7 +29,7 @@ class ReviewsAdapter(
     private fun bindViews(holder: MyViewHolder, position: Int) {
         val data = list[position]
 
-        holder.txtName.text = data.author
+        holder.txtName.text = data.author.capitalize()
         holder.txtReview.text = data.content
     }
 

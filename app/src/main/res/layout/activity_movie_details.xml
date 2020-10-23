@@ -50,181 +50,193 @@
         app:behavior_peekHeight="@dimen/_120sdp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <TextView
-            android:id="@+id/txtNextEpisode"
-            android:fontFamily="@font/nunito_regular"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_shadow_nextepisode"
-            android:gravity="right"
-            android:padding="@dimen/_7sdp"
-            android:text="Released Date: "
-            android:textColor="@color/white"
-            android:visibility="gone" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txtTitle"
-            android:fontFamily="@font/nunito_semibold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtNextEpisode"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:layout_marginRight="@dimen/_7sdp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="Title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_22sdp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txtDetails"
-            android:fontFamily="@font/nunito_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTitle"
-            android:layout_marginBottom="@dimen/_7sdp"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:layout_marginRight="@dimen/_7sdp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="Title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_11sdp" />
+                <TextView
+                    android:id="@+id/txtNextEpisode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_shadow_nextepisode"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="right"
+                    android:padding="@dimen/_7sdp"
+                    android:text="Released Date: "
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
 
-        <TextView
-            android:fontFamily="@font/nunito_regular"
-            android:id="@+id/txtIMDb"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_below="@+id/txtDetails"
-            android:layout_marginBottom="@dimen/_7sdp"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:layout_marginRight="@dimen/_7sdp"
-            android:background="@drawable/bg_imdb"
-            android:gravity="center"
-            android:paddingBottom="@dimen/_3sdp"
-            android:paddingLeft="@dimen/_6sdp"
-            android:paddingRight="@dimen/_6sdp"
-            android:paddingTop="@dimen/_3sdp"
-            android:text="IMDb"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_10sdp" />
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtNextEpisode"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_22sdp" />
 
-        <RelativeLayout
-            android:visibility="invisible"
-            android:id="@+id/rlTrailer"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_below="@+id/txtDetails"
-            android:layout_marginBottom="@dimen/_7sdp"
-            android:layout_toRightOf="@+id/txtIMDb"
-            android:background="@drawable/bg_trailer"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/_6sdp"
-            android:paddingRight="@dimen/_6sdp">
+                <TextView
+                    android:id="@+id/txtDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTitle"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp" />
 
-            <ImageView
-                android:id="@+id/imgTrailer"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/icon_trailer" />
+                <TextView
+                    android:id="@+id/txtIMDb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_below="@+id/txtDetails"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:background="@drawable/bg_imdb"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_6sdp"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingRight="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="IMDb"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
-            <TextView
-                android:fontFamily="@font/nunito_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_7sdp"
-                android:layout_toRightOf="@+id/imgTrailer"
-                android:gravity="center"
-                android:text="TRAILER"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_10sdp" />
-        </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlTrailer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_below="@+id/txtDetails"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:layout_toRightOf="@+id/txtIMDb"
+                    android:background="@drawable/bg_trailer"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_6sdp"
+                    android:paddingRight="@dimen/_6sdp"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/imgTrailer"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_trailer" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_7sdp"
+                        android:layout_toRightOf="@+id/imgTrailer"
+                        android:fontFamily="@font/nunito_regular"
+                        android:gravity="center"
+                        android:text="TRAILER"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
+                </RelativeLayout>
 
 
-        <ImageView
-            android:id="@+id/imgExpand"
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtDetails"
-            android:layout_marginBottom="@dimen/_7sdp"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/icon_up" />
+                <ImageView
+                    android:id="@+id/imgExpand"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_below="@+id/txtDetails"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:src="@drawable/icon_up" />
 
-        <TextView
-            android:id="@+id/txtOverview"
-            android:fontFamily="@font/nunito_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rlTrailer"
-            android:layout_marginBottom="@dimen/_7sdp"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:gravity="center_vertical"
-            android:text="Overview"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp" />
+                <TextView
+                    android:id="@+id/txtOverview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlTrailer"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center_vertical"
+                    android:text="Overview"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mRecyclerViewCast"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtOverview"
-            android:layout_margin="@dimen/_7sdp"
-            android:visibility="visible" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mRecyclerViewCast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtOverview"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:visibility="visible" />
 
-        <TextView
-            android:layout_marginTop="@dimen/_7sdp"
-            android:id="@+id/txtSimilarMoviesTitle"
-            android:fontFamily="@font/nunito_semibold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/mRecyclerViewCast"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:layout_marginRight="@dimen/_7sdp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="Similar Movies"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:id="@+id/txtSimilarMoviesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mRecyclerViewCast"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Similar Movies"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mRecyclerViewSimilarMovies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtSimilarMoviesTitle"
-            android:layout_margin="@dimen/_7sdp"
-            android:visibility="visible" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mRecyclerViewSimilarMovies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtSimilarMoviesTitle"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:visibility="visible" />
 
-        <TextView
-            android:layout_marginTop="@dimen/_7sdp"
-            android:id="@+id/txtReviewsTitle"
-            android:fontFamily="@font/nunito_semibold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/mRecyclerViewSimilarMovies"
-            android:layout_marginLeft="@dimen/_7sdp"
-            android:layout_marginRight="@dimen/_7sdp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:text="Reviews"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:id="@+id/txtReviewsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mRecyclerViewSimilarMovies"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Reviews"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mRecyclerViewReviews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtReviewsTitle"
-            android:layout_margin="@dimen/_7sdp"
-            android:visibility="visible" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mRecyclerViewReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtReviewsTitle"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 

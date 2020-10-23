@@ -78,7 +78,7 @@ class MovieDetailsActivity : BaseActivity() {
         mRecyclerViewSimilarMovies.adapter = similarMoviesAdapter
 
         mRecyclerViewReviews.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         reviewsAdapter = ReviewsAdapter(listReviews)
         mRecyclerViewReviews.setHasFixedSize(true)
         mRecyclerViewReviews.adapter = reviewsAdapter
@@ -216,7 +216,7 @@ class MovieDetailsActivity : BaseActivity() {
         })
 
         mainViewModel.reviewsLiveData.observe(this, Observer {
-            "data posted credits".showLog()
+            "data posted reviews".showLog()
             when (it?.status) {
                 Status.SUCCESS -> {
                     hideLoading()
@@ -249,6 +249,10 @@ class MovieDetailsActivity : BaseActivity() {
 
         rlTrailer.setOnClickListener {
             openTrailer()
+        }
+
+        imgBack.setOnClickListener {
+            finish()
         }
     }
 
