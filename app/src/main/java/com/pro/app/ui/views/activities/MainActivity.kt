@@ -68,7 +68,6 @@ class MainActivity : BaseActivity() {
                     listSearch.clear()
                     for (i in list.indices) {
                         var arr = list[i].title.split(" ")
-
                         for (word in arr) {
                             listSearch.add(ModelSearch(word.toLowerCase().trim(), i))
                         }
@@ -101,12 +100,39 @@ class MainActivity : BaseActivity() {
 
             override fun onTextChanged(str: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 var searchString = str.toString().toLowerCase().trim()
-                for (i in listSearch.indices) {
-                    if (listSearch[i].searchword.substring(0, searchString.length) == searchString)
-                    {
+                if (searchString.isEmpty()) {
+                    list.clear()
+                    list.addAll(listTmp)
+                } else {
+                    list.clear()
+                    var arrSearchWords = searchString.split(" ")
 
+                    for (i in listTmp.indices) {
+                        var arrTitleWords = listTmp[i].title.toLowerCase().split(" ")
+                        var flag = true
+                        for (a in arrSearchWords.indices) {
+
+                            for (b in arrTitleWords.indices) {
+
+                                if (a == arrSearchWords.size - 1) {
+                                    flag = arrTitleWords[b].startsWith(arrSearchWords[a])
+                                } else {
+                                    if (arrTitleWords[b] == arrSearchWords[a]) {
+
+                                    } else {
+                                        flag = false
+                                    }
+                                }
+                            }
+                        }
+                        if (flag) {
+                            if (!list.contains(listTmp[i])) {
+                                list.add(listTmp[i])
+                            }
+                        }
                     }
                 }
+                adapter.notifyDataSetChanged()
             }
 
         })
