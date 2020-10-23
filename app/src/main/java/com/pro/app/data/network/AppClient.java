@@ -1,11 +1,8 @@
 package com.pro.app.data.network;
 
 import android.util.Log;
-
-import com.appizona.yehiahd.fastsave.FastSave;
 import com.pro.app.BuildConfig;
 import com.pro.app.utils.AppUtilsKotlin;
-
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -27,12 +24,6 @@ public class AppClient {
                         Log.i("OkHttp", AppUtilsKotlin.Companion.formatString(message));
                     } else {
                         Log.i("OkHttp", message);
-                    }
-                    String log = FastSave.getInstance().getString("logs", "");
-                    if (log.equals("")) {
-                        FastSave.getInstance().saveString("logs", message + System.getProperty("line.separator"));
-                    } else {
-                        FastSave.getInstance().saveString("logs", message + System.getProperty("line.separator") + log);
                     }
                 }
             });

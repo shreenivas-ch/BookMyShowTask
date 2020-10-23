@@ -10,25 +10,20 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.appizona.yehiahd.fastsave.FastSave
 import com.mindorks.nybus.NYBus
-import com.mindorks.nybus.annotation.Subscribe
-import com.pro.app.BuildConfig
 import com.pro.app.R
-import com.pro.app.data.events.AuthFailEvent
-import com.pro.app.data.network.AppInteractor
-import com.pro.app.ui.views.activities.SplashscreenActivity
-import kotlinx.android.synthetic.main.layout_progressbar.*
+import com.pro.app.ui.viewmodels.MainViewModel
+import kotlinx.android.synthetic.main.layout_loader.*
 
 abstract class BaseActivity : AppCompatActivity(),
     BaseMvpView {
 
+    lateinit var mainViewModel: MainViewModel
+
     protected abstract val layoutId: Int
-    var interactor: AppInteractor = AppInteractor()
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(newBase)
@@ -41,6 +36,8 @@ abstract class BaseActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
+
+        mainViewModel = MainViewModel()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -56,28 +53,15 @@ abstract class BaseActivity : AppCompatActivity(),
     open fun registerListeners() {}
 
     override fun showLoading() {
-        progressBar.visibility = View.VISIBLE
+        rlLoader.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        progressBar.visibility = View.GONE
+        rlLoader.visibility = View.GONE
     }
 
     override fun onError(msg: String) {
 
-    }
-
-
-    fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    @Subscribe
-    fun onEvent(event: AuthFailEvent) {
-        FastSave.getInstance().clearSession()
-        val intent = Intent(this, SplashscreenActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -102,13 +86,5 @@ abstract class BaseActivity : AppCompatActivity(),
     override fun onStart() {
         super.onStart()
         NYBus.get().register(this)
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 }

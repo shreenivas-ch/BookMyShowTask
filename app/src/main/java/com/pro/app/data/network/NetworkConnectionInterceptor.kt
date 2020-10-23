@@ -42,6 +42,7 @@ abstract class NetworkConnectionInterceptor : Interceptor {
         val android_id = instance.deviceID
 
         val request = original.newBuilder()
+            .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MTFiYTE2YzFlN2VkNzRlNmI3YTA1YzRmZmJmY2UzOSIsInN1YiI6IjVmOTFlMTQwZDlmNGE2MDAzN2Q5ZDg2YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eKtfOeKlSsrI2R5LmoOCnZLQ3R0g2kA7n4lbX4kFcTc")
             .header("os", "android")
             .header("duid", android_id)
             .header("app_version", BuildConfig.VERSION_NAME)

@@ -1,23 +1,22 @@
 package com.pro.app.utils
 
-import android.content.Context
-import android.content.res.Configuration
-import android.content.res.Resources
-import android.os.Build
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.pro.app.R
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 class AppUtilsKotlin {
     companion object {
+
+        fun getReleaseYear(release_date: String): String {
+            val format = SimpleDateFormat(Constants.DATEFORMAT_1, Locale.getDefault())
+            format.timeZone = TimeZone.getTimeZone("UTC")
+            val date = format.parse(release_date)
+            var modifiedDate =
+                SimpleDateFormat(Constants.DATE_FORMAT_2, Locale.getDefault()).format(date)
+            return modifiedDate
+        }
 
         fun isJSONValid(test: String): Boolean {
             try {

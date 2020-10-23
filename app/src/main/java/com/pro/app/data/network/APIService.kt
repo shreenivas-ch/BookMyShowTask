@@ -17,7 +17,7 @@ interface APIService {
         @Query("api_key") api_key: String
     ): Call<MovieDetailsResponse>
 
-    @GET(EndPoints.GET_REVIEWS)
+    @GET(EndPoints.GET_CREDITS)
     fun getCredits(
         @Path("movie_id") movie_id: String,
         @Query("api_key") api_key: String
