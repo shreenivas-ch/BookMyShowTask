@@ -1,24 +1,20 @@
 package com.pro.app.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.pro.app.R
-import com.pro.app.data.models.ModelCredit
 import com.pro.app.data.models.ModelReview
-import com.pro.app.data.models.OnClick
-import com.pro.app.utils.Constants
 import java.util.*
 
 class ReviewsAdapter(
     internal var list: ArrayList<ModelReview>
 ) : RecyclerView.Adapter<ReviewsAdapter.MyViewHolder>() {
+
+    var MAX_LINES_COLLAPSED = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MyViewHolder {
         val itemView =
@@ -31,6 +27,14 @@ class ReviewsAdapter(
 
         holder.txtName.text = data.author.capitalize()
         holder.txtReview.text = data.content
+
+        holder.txtReview.setOnClickListener {
+            if (holder.txtReview.maxLines == 3) {
+                holder.txtReview.maxLines = Int.MAX_VALUE
+            } else {
+                holder.txtReview.maxLines = MAX_LINES_COLLAPSED
+            }
+        }
     }
 
     override fun getItemCount(): Int {

@@ -14,25 +14,26 @@
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_semibold"
+        android:fontFamily="@font/nunito_black"
         android:gravity="center_vertical"
         android:lines="1"
         android:text="Author Name"
         android:textColor="@color/white"
-        android:textSize="@dimen/_10sdp" />
+        android:textSize="@dimen/_12sdp" />
 
     <TextView
+        android:ellipsize="end"
         android:maxLines="3"
-        android:maxLength="100"
+        android:layout_marginTop="@dimen/_3sdp"
         android:id="@+id/txtReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtName"
         android:fontFamily="@font/nunito_regular"
         android:gravity="left|top"
-        android:ellipsize="end"
+        android:textStyle="italic"
         android:text="This is test review for this movie"
         android:textColor="@color/white"
-        android:textSize="@dimen/_10sdp" />
+        android:textSize="@dimen/_12sdp" />
 
 </RelativeLayout>
