@@ -14,12 +14,14 @@ import com.pro.app.R
 import com.pro.app.data.Status
 import com.pro.app.data.models.ModelCredit
 import com.pro.app.data.models.ModelNowPlaying
+import com.pro.app.data.models.ModelReview
 import com.pro.app.data.models.OnClick
 import com.pro.app.extensions.showLog
 import com.pro.app.extensions.showMessage
 import com.pro.app.extensions.toast
 import com.pro.app.ui.adapters.CastAdapter
 import com.pro.app.ui.adapters.MoviesAdapter
+import com.pro.app.ui.adapters.ReviewsAdapter
 import com.pro.app.ui.base.BaseActivity
 import com.pro.app.utils.Constants
 import kotlinx.android.synthetic.main.activity_movie_details.*
@@ -41,6 +43,9 @@ class MovieDetailsActivity : BaseActivity() {
     lateinit var listSimilarMovie: ArrayList<ModelNowPlaying>
     lateinit var similarMoviesAdapter: MoviesAdapter
 
+    lateinit var listReviews: ArrayList<ModelReview>
+    lateinit var reviewsAdapter: ReviewsAdapter
+
     override val layoutId: Int
         get() = R.layout.activity_movie_details
 
@@ -48,6 +53,7 @@ class MovieDetailsActivity : BaseActivity() {
 
         listCast = ArrayList()
         listSimilarMovie = ArrayList()
+        listReviews = ArrayList()
 
         mRecyclerViewCast.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -63,11 +69,19 @@ class MovieDetailsActivity : BaseActivity() {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         similarMoviesAdapter = MoviesAdapter(this, listSimilarMovie, object : OnClick {
             override fun onMovieClicked(modelNowPlaying: ModelNowPlaying) {
-
+                var intent = Intent(this@MovieDetailsActivity, MovieDetailsActivity::class.java)
+                intent.putExtra("movie", modelNowPlaying)
+                startActivity(intent)
             }
-        },"details")
+        }, "details")
         mRecyclerViewSimilarMovies.setHasFixedSize(true)
         mRecyclerViewSimilarMovies.adapter = similarMoviesAdapter
+
+        mRecyclerViewReviews.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        reviewsAdapter = ReviewsAdapter(listReviews)
+        mRecyclerViewReviews.setHasFixedSize(true)
+        mRecyclerViewReviews.adapter = reviewsAdapter
 
         modelNowPlaying = intent.getParcelableExtra<ModelNowPlaying>("movie") as ModelNowPlaying
         if (modelNowPlaying.poster_path != "") {
@@ -201,10 +215,31 @@ class MovieDetailsActivity : BaseActivity() {
             }
         })
 
+        mainViewModel.reviewsLiveData.observe(this, Observer {
+            "data posted credits".showLog()
+            when (it?.status) {
+                Status.SUCCESS -> {
+                    hideLoading()
+
+                    listReviews.clear()
+                    listReviews.addAll(it.data?.results!!)
+                    reviewsAdapter.notifyDataSetChanged()
+                }
+                Status.LOADING -> {
+                    showLoading()
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                    it.message?.let { showMessage(it) }
+                }
+            }
+        })
+
         mainViewModel.getSynopsis(modelNowPlaying.id)
         mainViewModel.getCredits(modelNowPlaying.id)
         mainViewModel.getMovieVideos(modelNowPlaying.id)
         mainViewModel.getSimilarMovies(modelNowPlaying.id)
+        mainViewModel.getReviews(modelNowPlaying.id)
     }
 
     override fun registerListeners() {

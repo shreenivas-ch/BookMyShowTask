@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rlMain"
-    android:layout_marginLeft="@dimen/_7sdp"
-    android:layout_width="@dimen/_125sdp"
-    android:layout_height="@dimen/_170sdp"
+    android:layout_marginLeft="@dimen/_3sdp"
+    android:layout_width="@dimen/_100sdp"
+    android:layout_height="@dimen/_155sdp"
     tools:ignore="MissingPrefix">
 
     <ImageView
