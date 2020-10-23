@@ -16,6 +16,7 @@ open class AppInteractor {
     ) {
 
         viewModel.postValue(Resource.loading(null))
+
         val call = apiService.getNowPlaynig(api_key)
         call.enqueue(object : SuccessCallback<NowPlayingResponse>() {
 
@@ -37,6 +38,7 @@ open class AppInteractor {
         viewModel: MutableLiveData<Resource<MovieDetailsResponse>>
     ) {
 
+        viewModel.postValue(Resource.loading(null))
         val call = apiService.getSynopsis(movie_id,api_key)
         call.enqueue(object : SuccessCallback<MovieDetailsResponse>() {
 
@@ -58,6 +60,7 @@ open class AppInteractor {
         viewModel: MutableLiveData<Resource<MovieCreditsResponse>>
     ) {
 
+        viewModel.postValue(Resource.loading(null))
         val call = apiService.getCredits(movie_id,api_key)
         call.enqueue(object : SuccessCallback<MovieCreditsResponse>() {
 
@@ -79,6 +82,7 @@ open class AppInteractor {
         viewModel: MutableLiveData<Resource<MovieReviewsResponse>>
     ) {
 
+        viewModel.postValue(Resource.loading(null))
         val call = apiService.getReviews(movie_id,api_key)
         call.enqueue(object : SuccessCallback<MovieReviewsResponse>() {
 
@@ -100,6 +104,7 @@ open class AppInteractor {
         viewModel: MutableLiveData<Resource<SimilarMoviesResponse>>
     ) {
 
+        viewModel.postValue(Resource.loading(null))
         val call = apiService.getSimilarMovies(movie_id,api_key)
         call.enqueue(object : SuccessCallback<SimilarMoviesResponse>() {
 

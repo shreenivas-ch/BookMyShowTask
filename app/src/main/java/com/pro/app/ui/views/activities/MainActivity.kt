@@ -1,5 +1,6 @@
 package com.pro.app.ui.views.activities
 
+import android.content.Intent
 import android.os.Build
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
@@ -36,7 +37,9 @@ class MainActivity : BaseActivity() {
         rvMovies.setHasFixedSize(true)
         adapter = MoviesAdapter(this, list, object : OnClick {
             override fun onMovieClicked(modelNowPlaying: ModelNowPlaying) {
-
+                var intent = Intent(this@MainActivity, MovieDetailsActivity::class.java)
+                intent.putExtra("movie", modelNowPlaying)
+                startActivity(intent)
             }
         })
 
