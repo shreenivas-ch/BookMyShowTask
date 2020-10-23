@@ -113,6 +113,7 @@
             android:textSize="@dimen/_10sdp" />
 
         <RelativeLayout
+            android:visibility="invisible"
             android:id="@+id/rlTrailer"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
@@ -174,6 +175,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtOverview"
+            android:layout_margin="@dimen/_7sdp"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_7sdp"
+            android:id="@+id/txtSimilarMoviesTitle"
+            android:fontFamily="@font/nunito_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mRecyclerViewCast"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:layout_marginRight="@dimen/_7sdp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="Similar Movies"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerViewSimilarMovies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSimilarMoviesTitle"
             android:layout_margin="@dimen/_7sdp"
             android:visibility="visible" />
 

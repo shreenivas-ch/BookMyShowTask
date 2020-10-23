@@ -35,4 +35,10 @@ interface APIService {
         @Query("api_key") api_key: String
     ): Call<SimilarMoviesResponse>
 
+    @GET(EndPoints.GET_VIDEOS)
+    fun getMovieVideos(
+        @Path("movie_id") movie_id: String,
+        @Query("api_key") api_key: String
+    ): Call<MovieVideosResponse>
+
 }

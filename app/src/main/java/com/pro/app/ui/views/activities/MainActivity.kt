@@ -46,7 +46,7 @@ class MainActivity : BaseActivity() {
         rvMovies.adapter = adapter
 
         mainViewModel.nowPlayingLiveData.observe(this, Observer {
-            "LoginActivity: data posted".showLog()
+            "data posted".showLog()
             when (it?.status) {
                 Status.SUCCESS -> {
                     hideLoading()

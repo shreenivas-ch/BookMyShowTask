@@ -12,6 +12,7 @@ class MainViewModel() : BaseViewModel() {
     var creditsLiveData: MutableLiveData<Resource<MovieCreditsResponse>> = MutableLiveData()
     var reviewsLiveData: MutableLiveData<Resource<MovieReviewsResponse>> = MutableLiveData()
     var similarMoviesLiveData: MutableLiveData<Resource<SimilarMoviesResponse>> = MutableLiveData()
+    var videoMoviesLiveData: MutableLiveData<Resource<MovieVideosResponse>> = MutableLiveData()
 
     fun getNowPlaying(): MutableLiveData<Resource<NowPlayingResponse>> {
         appInteractor.getNowPlaying(nowPlayingLiveData)
@@ -38,5 +39,12 @@ class MainViewModel() : BaseViewModel() {
     ): MutableLiveData<Resource<SimilarMoviesResponse>> {
         appInteractor.getSimilarMovies(movie_id, similarMoviesLiveData)
         return similarMoviesLiveData
+    }
+
+    fun getMovieVideos(
+        movie_id: String
+    ): MutableLiveData<Resource<MovieVideosResponse>> {
+        appInteractor.getMovieVideos(movie_id, videoMoviesLiveData)
+        return videoMoviesLiveData
     }
 }

@@ -120,6 +120,28 @@ open class AppInteractor {
             }
         })
     }
+
+    fun getMovieVideos(
+        movie_id:String,
+        viewModel: MutableLiveData<Resource<MovieVideosResponse>>
+    ) {
+
+        viewModel.postValue(Resource.loading(null))
+        val call = apiService.getMovieVideos(movie_id,api_key)
+        call.enqueue(object : SuccessCallback<MovieVideosResponse>() {
+
+            override fun onSuccess(response: Response<MovieVideosResponse>) {
+                try {
+                    viewModel.postValue(Resource.success(response.body()))
+                } catch (ex: Exception) {
+                    viewModel.postValue(Resource.error(ex.toString(), null))
+                }
+            }
+            override fun onFailure(message: String) {
+                viewModel.postValue(Resource.error(message, null))
+            }
+        })
+    }
 }
 
 

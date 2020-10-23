@@ -19,12 +19,15 @@ import java.util.*
 class MoviesAdapter(
     internal var context: Context,
     internal var list: ArrayList<ModelNowPlaying>,
-    internal var onClick: OnClick
+    internal var onClick: OnClick,
+    internal var screen: String = "main"
 ) : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MyViewHolder {
+
+        var layout = if (screen == "main") R.layout.item_movie else R.layout.item_similarmovie
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+            LayoutInflater.from(parent.context).inflate(layout, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -38,7 +41,7 @@ class MoviesAdapter(
         if (data.poster_path != "") {
             holder.txtTitle.visibility = View.GONE
             Glide.with(context)
-                .load(IMAGE_BASE_URL+data.poster_path).dontTransform()
+                .load(IMAGE_BASE_URL + data.poster_path).dontTransform()
                 .placeholder(R.drawable.bg_placeholder)
                 .into(holder.imgCover)
         } else {
