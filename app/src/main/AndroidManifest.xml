@@ -17,7 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory,android:allowBackup">
-        <activity android:name=".ui.views.activities.LoginActivity"></activity>
         <activity android:name=".ui.views.activities.MainActivity"/>
         <activity android:name=".ui.views.activities.SplashscreenActivity">
             <intent-filter>

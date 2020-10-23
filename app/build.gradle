@@ -34,13 +34,16 @@ android {
         live {
             versionCode 1
             versionName "1.0"
-            buildConfigField 'String', 'BASE_URL', '"http://www.saturdayworking.in/"'
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/"'
+            buildConfigField 'String', 'APIS', '"Live"'
+            buildConfigField 'String', 'API_KEY', '"811ba16c1e7ed74e6b7a05c4ffbfce39"'
         }
         beta {
             versionCode 1
             versionName "1.0"
-            buildConfigField 'String', 'BASE_URL', '"http://www.saturdayworking.in/"'
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/"'
             buildConfigField 'String', 'APIS', '"Staging"'
+            buildConfigField 'String', 'API_KEY', '"811ba16c1e7ed74e6b7a05c4ffbfce39"'
         }
     }
 

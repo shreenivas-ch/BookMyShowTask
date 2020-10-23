@@ -1,39 +1,53 @@
 package com.pro.app.data.network
 
 import androidx.lifecycle.MutableLiveData
+import com.pro.app.BuildConfig
 import com.pro.app.data.Resource
-import com.pro.app.data.requests.LoginRequest
-import com.pro.app.data.responses.LoginResponse
+import com.pro.app.data.responses.MovieDetailsResponse
+import com.pro.app.data.responses.NowPlayingResponse
 import retrofit2.Response
 
 open class AppInteractor {
 
     private val apiService: APIService = AppClient.getClient().create(APIService::class.java)
+    private val api_key = BuildConfig.API_KEY
 
-    fun login(
-        loginRequest: LoginRequest,
-        loginViewModel: MutableLiveData<Resource<LoginResponse>>
+    fun getNowPlaying(
+        viewModel: MutableLiveData<Resource<NowPlayingResponse>>
     ) {
 
-        val call = apiService.login(loginRequest)
-        call.enqueue(object : SuccessCallback<LoginResponse>() {
+        val call = apiService.getNowPlaynig(api_key)
+        call.enqueue(object : SuccessCallback<NowPlayingResponse>() {
 
-            override fun onSuccess(response: Response<LoginResponse>) {
+            override fun onSuccess(response: Response<NowPlayingResponse>) {
                 try {
-                    if (response.body()!!.status == 1) {
-
-                        loginViewModel.postValue(Resource.success(response.body()))
-
-                    } else {
-                        loginViewModel.postValue(Resource.error(response.message(), null))
-                    }
+                    viewModel.postValue(Resource.success(response.body()))
                 } catch (ex: Exception) {
-                    loginViewModel.postValue(Resource.error(ex.toString(), null))
+                    viewModel.postValue(Resource.error(ex.toString(), null))
                 }
             }
-
             override fun onFailure(message: String) {
-                loginViewModel.postValue(Resource.error(message, null))
+                viewModel.postValue(Resource.error(message, null))
+            }
+        })
+    }
+
+    fun getMovieDetails(
+        viewModel: MutableLiveData<Resource<MovieDetailsResponse>>
+    ) {
+
+        val call = apiService.getSynopsis(api_key)
+        call.enqueue(object : SuccessCallback<MovieDetailsResponse>() {
+
+            override fun onSuccess(response: Response<MovieDetailsResponse>) {
+                try {
+                    viewModel.postValue(Resource.success(response.body()))
+                } catch (ex: Exception) {
+                    viewModel.postValue(Resource.error(ex.toString(), null))
+                }
+            }
+            override fun onFailure(message: String) {
+                viewModel.postValue(Resource.error(message, null))
             }
         })
     }

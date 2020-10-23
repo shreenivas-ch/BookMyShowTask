@@ -1,13 +1,38 @@
 package com.pro.app.data.network
 
-import com.pro.app.data.requests.LoginRequest
-import com.pro.app.data.responses.LoginResponse
+import com.pro.app.data.responses.*
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface APIService {
 
-    @POST(EndPoints.LOGIN)
-    fun login(@Body body: LoginRequest): Call<LoginResponse>
+    @GET(EndPoints.GET_NOW_PLAYING)
+    fun getNowPlaynig( @Query("api_key") api_key: String): Call<NowPlayingResponse>
+
+    @GET(EndPoints.GET_SYNOPSIS)
+    fun getSynopsis(
+        @Path("movie_id") movie_id: String,
+        @Query("api_key") api_key: String
+    ): Call<MovieDetailsResponse>
+
+    @GET(EndPoints.GET_REVIEWS)
+    fun getCredits(
+        @Path("movie_id") movie_id: String,
+        @Query("api_key") api_key: String
+    ): Call<MovieCreditsResponse>
+
+    @GET(EndPoints.GET_REVIEWS)
+    fun getReviews(
+        @Path("movie_id") movie_id: String,
+        @Query("api_key") api_key: String
+    ): Call<MovieReviewsResponse>
+
+    @GET(EndPoints.GET_SIMILAR_MOVIES)
+    fun getSimilarMovies(
+        @Path("movie_id") movie_id: String,
+        @Query("api_key") api_key: String
+    ): Call<SimilarMoviesResponse>
 
 }
