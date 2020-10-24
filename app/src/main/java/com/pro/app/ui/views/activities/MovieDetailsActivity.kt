@@ -204,6 +204,12 @@ class MovieDetailsActivity : BaseActivity() {
                     listSimilarMovie.clear()
                     listSimilarMovie.addAll(it.data?.results!!)
                     similarMoviesAdapter.notifyDataSetChanged()
+
+                    if(listSimilarMovie.size==0)
+                    {
+                        txtSimilarMoviesTitle.visibility=View.GONE
+                    }
+
                 }
                 Status.LOADING -> {
                     showLoading()
@@ -224,6 +230,11 @@ class MovieDetailsActivity : BaseActivity() {
                     listReviews.clear()
                     listReviews.addAll(it.data?.results!!)
                     reviewsAdapter.notifyDataSetChanged()
+
+                    if(listReviews.size==0)
+                    {
+                        txtReviewsTitle.visibility=View.GONE
+                    }
                 }
                 Status.LOADING -> {
                     showLoading()

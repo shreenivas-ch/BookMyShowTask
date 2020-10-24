@@ -17,10 +17,10 @@ import com.pro.app.utils.Constants.IMAGE_BASE_URL
 import java.util.*
 
 class MoviesAdapter(
-    internal var context: Context,
-    internal var list: ArrayList<ModelNowPlaying>,
-    internal var onClick: OnClick,
-    internal var screen: String = "main"
+    private var context: Context,
+    private var list: ArrayList<ModelNowPlaying>,
+    private var onClick: OnClick,
+    private var screen: String = "main"
 ) : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MyViewHolder {

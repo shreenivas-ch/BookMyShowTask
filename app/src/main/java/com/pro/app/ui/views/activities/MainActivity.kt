@@ -108,8 +108,6 @@ class MainActivity : BaseActivity() {
                     var arrPatters = ArrayList<Pattern>()
                     for (i in arrSearchWords.indices) {
                         if (i == arrSearchWords.size - 1) {
-                            /*arrPatters.add(Pattern.compile("(^${arrSearchWords[i]}).*"))
-                            arrPatters.add(Pattern.compile("(\\s${arrSearchWords[i]}).*"))*/
                             arrPatters.add(Pattern.compile("(^${arrSearchWords[i]}|\\s${arrSearchWords[i]}).*"))
                         } else {
                             arrPatters.add(Pattern.compile("\\b${arrSearchWords[i]}\\b"))
