@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.pro.app.R
 import com.pro.app.data.Status
 import com.pro.app.data.models.ModelNowPlaying
-import com.pro.app.data.models.ModelSearch
 import com.pro.app.data.models.OnClick
 import com.pro.app.extensions.showLog
 import com.pro.app.extensions.showMessage
 import com.pro.app.ui.adapters.MoviesAdapter
 import com.pro.app.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class MainActivity : BaseActivity() {
 
-    lateinit var listSearch: ArrayList<ModelSearch>
+    lateinit var listSearch: ArrayList<List<String>>
 
     lateinit var list: ArrayList<ModelNowPlaying>
     lateinit var listTmp: ArrayList<ModelNowPlaying>
@@ -64,13 +65,10 @@ class MainActivity : BaseActivity() {
                     listTmp.addAll(it.data?.results!!)
                     adapter.notifyDataSetChanged()
 
-
                     listSearch.clear()
                     for (i in list.indices) {
-                        var arr = list[i].title.split(" ")
-                        for (word in arr) {
-                            listSearch.add(ModelSearch(word.toLowerCase().trim(), i))
-                        }
+                        var arr = list[i].title.toLowerCase().split(" ")
+                        listSearch.add(arr)
                     }
 
                 }
@@ -107,29 +105,36 @@ class MainActivity : BaseActivity() {
                     list.clear()
                     var arrSearchWords = searchString.split(" ")
 
+                    var arrPatters = ArrayList<Pattern>()
+                    for (i in arrSearchWords.indices) {
+                        if (i == arrSearchWords.size - 1) {
+                            arrPatters.add(Pattern.compile("(${arrSearchWords[i]}).*"))
+                        } else {
+                            arrPatters.add(Pattern.compile("\\b${arrSearchWords[i]}\\b"))
+                        }
+                    }
+
                     for (i in listTmp.indices) {
-                        var arrTitleWords = listTmp[i].title.toLowerCase().split(" ")
+
                         var flag = true
-                        for (a in arrSearchWords.indices) {
 
-                            for (b in arrTitleWords.indices) {
-
-                                if (a == arrSearchWords.size - 1) {
-                                    flag = arrTitleWords[b].startsWith(arrSearchWords[a])
-                                } else {
-                                    if (arrTitleWords[b] == arrSearchWords[a]) {
-
-                                    } else {
-                                        flag = false
-                                    }
+                        for (pattern in arrPatters) {
+                            if (flag) {
+                                var dTitle = listTmp[i].title.toLowerCase()
+                                val matcher: Matcher = pattern.matcher(dTitle)
+                                if (!matcher.find()) {
+                                    flag = false
                                 }
                             }
                         }
+
                         if (flag) {
                             if (!list.contains(listTmp[i])) {
                                 list.add(listTmp[i])
                             }
                         }
+
+
                     }
                 }
                 adapter.notifyDataSetChanged()
